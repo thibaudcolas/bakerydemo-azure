@@ -9,6 +9,7 @@ google-cloud-storage>=3.9.0,<4
 django-storages>=1.14.6,<2
 # Azure Blob Storage media backend (used by the Azure App Service deployment)
 azure-storage-blob>=12,<13
+gunicorn==23.0.0
 # For retrieving credentials and signing requests to Elasticsearch
 aws-requests-auth==0.4.3
 django-redis>=6.0.0,<7
