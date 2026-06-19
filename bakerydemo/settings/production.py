@@ -166,6 +166,18 @@ if "GS_BUCKET_NAME" in os.environ:
     INSTALLED_APPS.append("storages")
     STORAGES["default"]["BACKEND"] = "storages.backends.gcloud.GoogleCloudStorage"
 
+# Azure Blob Storage for user-uploaded media, via django-storages.
+# Enabled when AZURE_STORAGE_ACCOUNT_NAME is present in the environment (set by
+# the Azure App Service deployment in deploy/azure-deploy.sh). The container is
+# created with public "blob" access, so we serve unsigned, non-expiring URLs.
+if "AZURE_STORAGE_ACCOUNT_NAME" in os.environ:
+    INSTALLED_APPS.append("storages")
+    STORAGES["default"]["BACKEND"] = "storages.backends.azure_storage.AzureStorage"
+    AZURE_ACCOUNT_NAME = os.environ["AZURE_STORAGE_ACCOUNT_NAME"]
+    AZURE_ACCOUNT_KEY = os.getenv("AZURE_STORAGE_ACCOUNT_KEY", "")
+    AZURE_CONTAINER = os.getenv("AZURE_STORAGE_CONTAINER", "media")
+    AZURE_URL_EXPIRATION_SECS = None
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,

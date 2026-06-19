@@ -7,6 +7,8 @@ whitenoise>=6.11.0,<7
 boto3>=1.42,<1.43
 google-cloud-storage>=3.9.0,<4
 django-storages>=1.14.6,<2
+# Azure Blob Storage media backend (used by the Azure App Service deployment)
+azure-storage-blob>=12,<13
 # For retrieving credentials and signing requests to Elasticsearch
 aws-requests-auth==0.4.3
 django-redis>=6.0.0,<7
